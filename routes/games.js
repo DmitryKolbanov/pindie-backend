@@ -17,6 +17,7 @@ const {
     sendGameUpdated,
     sendGameDeleted,
 } = require("../controllers/games");
+const { checkAuth } = require("../middlewares/auth.js");
 
 gamesRouter.get("/games", findAllGames, sendAllGames);
 gamesRouter.get("/games/:id", findGameById, sendGameById);
@@ -26,16 +27,18 @@ gamesRouter.put(
     checkIfUsersAreSafe,
     checkIfCategoriesAvaliable,
     checkEmptyFields,
+    checkAuth,
     updateGame,
     sendGameUpdated
 );
-gamesRouter.delete("/games/:id", deleteGame, sendGameDeleted);
+gamesRouter.delete("/games/:id", checkAuth, deleteGame, sendGameDeleted);
 gamesRouter.post(
     "/games",
     findAllGames,
     checkIsGameExists,
     checkIfCategoriesAvaliable,
     checkEmptyFields,
+    checkAuth,
     createGame,
     sendGameCreated
 );

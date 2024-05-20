@@ -33,4 +33,20 @@ const gameSchema = new mongoose.Schema({
     }]
 });
 
+gameSchema.statics.findGameByCategory = function(category) {
+    return this.find({}) // Выполним поиск всех игр
+      .populate({
+        path: "categories",
+        match: { name: category } 
+      })
+      .populate({
+        path: "users",
+        select: "-password"
+      })
+      .then(games => {
+          // Отфильтруем по наличию искомой категории 
+        return games.filter(game => game.categories.length > 0);
+      });
+  }; 
+
 module.exports = mongoose.model("game", gameSchema);
