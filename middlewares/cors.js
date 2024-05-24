@@ -1,4 +1,4 @@
-const allowedCors = ["http://localhost:3000", "http://localhost:3001"];
+const allowedCors = ["callban-pindie.nomoredomainswork.ru"];
 
 function cors(req, res, next) {
     const { origin } = req.headers;
@@ -6,7 +6,6 @@ function cors(req, res, next) {
     if (allowedCors.includes(origin)) {
         res.header("Access-Control-Allow-Origin", origin);
     }
-    // разрешить все ключевые запросы между доменами
     res.header(
         "Access-Control-Allow-Methods",
         "GET,HEAD,PUT,PATCH,POST,DELETE"
