@@ -57,7 +57,7 @@ const findUserById = async (req, res, next) => {
 };
 
 const checkEmptyNameAndEmailAndPassword = async (req, res, next) => {
-    if (!req.body.name || !req.body.email || !req.body.password) {
+    if (!req.body.username || !req.body.email || !req.body.password) {
         res.setHeader("Content-Type", "application/json");
         res.status(400).send(
             JSON.stringify({
@@ -70,7 +70,7 @@ const checkEmptyNameAndEmailAndPassword = async (req, res, next) => {
 };
 
 const checkEmptyNameAndEmail = async (req, res, next) => {
-    if (!req.body.name || !req.body.email) {
+    if (!req.body.username || !req.body.email) {
         res.setHeader("Content-Type", "application/json");
         res.status(400).send(
             JSON.stringify({
