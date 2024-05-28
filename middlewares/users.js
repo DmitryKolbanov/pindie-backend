@@ -22,7 +22,7 @@ const createUser = async (req, res, next) => {
 const updateUser = async (req, res, next) => {
     console.log("PUT /users/:id");
     try {
-        req.user = users.findByIdAndUpdate(req.params.id, req.body);
+        req.user = await users.findByIdAndUpdate(req.params.id, req.body);
         next();
     } catch (error) {
         res.setHeader("Content-Type", "application/json");
